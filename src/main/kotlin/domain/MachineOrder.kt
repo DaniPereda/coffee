@@ -9,6 +9,10 @@ class MachineOrder(private var order: Orders, private var message: String = "", 
             Orders.CHOCOLATE -> "H::"
             Orders.COFFEE_2SUGAR_STICK -> "C:2:0"
             Orders.MESSAGE -> "M:" + message
+            Orders.COFFE_EXTRA_HOT -> "Ch::"
+            Orders.ORANGE_JUICE -> "O::"
+            Orders.CHOCOLATE_EXTRA_HOT_SUGAR_STICK -> "Hh:1:0"
+            Orders.TEA_EXTRA_HOT_2SUGAR_STICK -> "Th:2:0"
         }
     }
     private fun controlMoney()
