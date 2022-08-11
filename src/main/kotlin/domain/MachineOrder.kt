@@ -2,58 +2,56 @@ package domain
 
 import kotlin.math.roundToInt
 
-class MachineOrder(private var product: Products, private val sugar:Int=0, private val stick:Int=0, private var message: String = "", private val isExtraHot:Boolean = false, private val moneyInserted:Float = 0F) {
-    fun translate(): String {
-        var codeReturned:String
-        codeReturned = translateProduct()
-        if(errorMessage())
-        {
-            codeReturned += message
-        }else {
-            codeReturned = codeReturned + translateExtraHot() + ":" + translateSugar() + ":" + translateStick()
-        }
-        return codeReturned
+class MachineOrder() {
+
+    private var product: Products = Products.ERROR
+    private var sugar:Int=0
+    private var message: String = ""
+
+    fun increaseSugar(){
+        sugar += 1
+    }
+    fun decraseSugar(){
+        if(sugar > 0)
+            sugar -= 1
+    }
+    fun chocolate(){
+        product = Products.CHOCOLATE
+    }
+    fun tea(){
+        product = Products.TEA
+    }
+    fun coffee(){
+        product = Products.COFFEE
     }
 
     private fun errorMessage() = product == Products.ERROR
 
     private fun translateProduct() = product.code
 
-    private fun translateSugar():String {
+    private fun translateSugarAndStick():String {
         return if(sugar == 0)
-            ""
+            noSugarNoStick()
         else
-            sugar.toString()
+            sugarAndStick()
     }
 
-    private fun translateExtraHot():String {
-        return if(isExtraHot)
-            "h"
-        else
-            ""
-    }
+    private fun sugarAndStick() = sugar.toString() + ":0"
 
-    private fun translateStick():String {
-        return if(stick == 0)
-            ""
-        else
-            "0"
-    }
+    private fun noSugarNoStick() = ":"
+
+
 
     fun manageOrder():String{
-        if(notEnoughMoney())
+        var codeReturned:String
+        codeReturned = translateProduct()
+        if(errorMessage())
         {
-            message = "Error, you need ${roundedDifference()} more credit to reach the cost of the product (${product.price})"
-            product = Products.ERROR
+            codeReturned += message
+        }else {
+            codeReturned = codeReturned + ":" + translateSugarAndStick()
         }
-        return translate()
+        return codeReturned
     }
-
-    private fun roundedDifference() = (((product.price - moneyInserted)*100).roundToInt()).toFloat()/100
-
-    private fun notEnoughMoney() = product.price > moneyInserted
-
-
-
 
 }

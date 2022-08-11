@@ -1,9 +1,10 @@
+import app.CoffeMachineService
 import infra.DrinkMakerImpl
 import infra.PadImpl
-import app.CoffeMachineService
+import app.MainApp
+import domain.MachineOrder
 
 fun main(args: Array<String>) {
-    CoffeMachineService().run(DrinkMakerImpl(), PadImpl())
-}
+    MainApp(DrinkMakerImpl(), PadImpl()).userInteraction()
 
-//aquest pas de parametres l'he de fer des de app? però aleshores hauria de referenciar infra des-de app. no? Això no estaria be
+}

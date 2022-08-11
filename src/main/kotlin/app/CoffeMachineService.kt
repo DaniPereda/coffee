@@ -1,12 +1,32 @@
 package app
 
-import domain.Products
+import domain.MachineOrder
 
-class CoffeMachineService {
-    fun run(drinkMaker: DrinkMaker, pad: Pad)
+class CoffeMachineService(var drinkMaker: DrinkMaker) {
+    var machineOrder = MachineOrder()
+
+    fun manageButton(button: Buttons)
     {
-        var padOrder = pad.sendOrder(Products.ORANGE, 1, 5, false,0.6F)
-        drinkMaker.receiveOrder(padOrder.manageOrder())
+        when(button){
+            Buttons.DECREASE_SUGAR -> machineOrder.decraseSugar()
+            Buttons.INCREASE_SUGAR -> machineOrder.increaseSugar()
+            Buttons.COFFEE -> machineOrder.coffee()
+            Buttons.CHOCOLATE -> machineOrder.chocolate()
+            Buttons.TEA -> machineOrder.tea()
+            Buttons.READY -> ready()
+
+        }
     }
+    fun ready() {
+
+        sendOrderToDrinkMaker()
+    }
+
+    private fun sendOrderToDrinkMaker() {
+        drinkMaker.receiveOrder(getFormattedOrder())
+    }
+
+    private fun getFormattedOrder() = machineOrder.manageOrder()
+
 
 }

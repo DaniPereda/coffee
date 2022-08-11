@@ -1,11 +1,22 @@
 package infra
 
-import domain.MachineOrder
-import domain.Products
+import app.Buttons
 import app.Pad
 
 class PadImpl: Pad {
-    override fun sendOrder(product:Products, numberSugars:Int, numberSticks:Int, extraHot:Boolean, moneyInserted:Float): MachineOrder {
-        return MachineOrder(product, numberSugars, numberSticks, "", extraHot, moneyInserted)
-    }
+
+    override fun coffee() = Buttons.COFFEE
+
+    override fun tea() = Buttons.TEA
+
+    override fun chocolate() = Buttons.CHOCOLATE
+
+    override fun increaseSugar() = Buttons.INCREASE_SUGAR
+
+    override fun decreaseSugar() = Buttons.DECREASE_SUGAR
+
+    override fun ready() = Buttons.READY
+
+
+
 }
