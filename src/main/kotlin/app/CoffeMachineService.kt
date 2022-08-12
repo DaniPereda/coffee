@@ -2,7 +2,7 @@ package app
 
 import domain.MachineOrder
 
-class CoffeMachineService(var drinkMaker: DrinkMaker) {
+class CoffeMachineService(var drinkMaker: DrinkMaker, var translator:Translator) {
     var machineOrder = MachineOrder()
 
     fun manageButton(button: Buttons)
@@ -18,7 +18,7 @@ class CoffeMachineService(var drinkMaker: DrinkMaker) {
         }
     }
     fun ready() {
-
+        machineOrder.check_Drink_Selected()
         sendOrderToDrinkMaker()
     }
 
@@ -26,7 +26,7 @@ class CoffeMachineService(var drinkMaker: DrinkMaker) {
         drinkMaker.receiveOrder(getFormattedOrder())
     }
 
-    private fun getFormattedOrder() = machineOrder.manageOrder()
+    private fun getFormattedOrder() = translator.translate(machineOrder)
 
 
 }

@@ -1,12 +1,11 @@
 package domain
 
-import kotlin.math.roundToInt
 
 class MachineOrder() {
 
-    private var product: Products = Products.ERROR
-    private var sugar:Int=0
-    private var message: String = ""
+    var product: Products = Products.NULL
+    var sugar:Int=0
+    var error = ERROR_CODES.NONE
 
     fun increaseSugar(){
         sugar += 1
@@ -25,33 +24,11 @@ class MachineOrder() {
         product = Products.COFFEE
     }
 
-    private fun errorMessage() = product == Products.ERROR
-
-    private fun translateProduct() = product.code
-
-    private fun translateSugarAndStick():String {
-        return if(sugar == 0)
-            noSugarNoStick()
-        else
-            sugarAndStick()
-    }
-
-    private fun sugarAndStick() = sugar.toString() + ":0"
-
-    private fun noSugarNoStick() = ":"
-
-
-
-    fun manageOrder():String{
-        var codeReturned:String
-        codeReturned = translateProduct()
-        if(errorMessage())
+    fun check_Drink_Selected() {
+        if (product == Products.NULL)
         {
-            codeReturned += message
-        }else {
-            codeReturned = codeReturned + ":" + translateSugarAndStick()
+            error = ERROR_CODES.NO_SELECTED_DRINK
         }
-        return codeReturned
     }
 
 }
