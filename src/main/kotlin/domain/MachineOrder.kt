@@ -3,7 +3,7 @@ package domain
 
 class MachineOrder() {
 
-    var product: Products = Products.NULL
+    var product: Products = Products.NO_SELECTED
     var sugar:Int=0
     var error = ERROR_CODES.NONE
 
@@ -25,7 +25,7 @@ class MachineOrder() {
     }
 
     fun check_Drink_Selected() {
-        if (product == Products.NULL)
+        if (product == Products.NO_SELECTED)
         {
             error = ERROR_CODES.NO_SELECTED_DRINK
         }
