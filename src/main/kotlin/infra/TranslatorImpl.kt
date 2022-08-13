@@ -7,7 +7,8 @@ import domain.MachineOrder
 
 class TranslatorImpl(): Translator {
     var machineOrder = MachineOrder()
-    override fun translate(myMachineOrder: MachineOrder, drinkMaker: DrinkMaker) {
+    override fun translate(myMachineOrder: MachineOrder) {
+        val drinkMaker =  DrinkMakerImpl()
         machineOrder = myMachineOrder
         var returnedMesage:String
         if(hasNoErrors())

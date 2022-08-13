@@ -1,7 +1,7 @@
 package app
 
-class MainApp(drinkMaker: DrinkMaker, private val pad: Pad, translator:Translator) {
-    var coffeeMachineService = CoffeMachineService(drinkMaker, translator)
+class MainApp(private val pad: Pad, adapter:Translator) {
+    var coffeeMachineService = CoffeMachineService(adapter)
 
     fun userInteraction(){
 

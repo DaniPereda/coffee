@@ -2,7 +2,7 @@ package app
 
 import domain.MachineOrder
 
-class CoffeMachineService(var drinkMaker: DrinkMaker, var translator:Translator) {
+class CoffeMachineService(var adapter:Translator) {
     var machineOrder = MachineOrder()
 
     fun manageButton(button: Buttons)
@@ -23,7 +23,7 @@ class CoffeMachineService(var drinkMaker: DrinkMaker, var translator:Translator)
     }
 
     private fun sendOrderToDrinkMaker() {
-        translator.translate(machineOrder, drinkMaker)
+        adapter.translate(machineOrder)
     }
 
 }

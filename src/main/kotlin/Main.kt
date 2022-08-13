@@ -5,6 +5,6 @@ import infra.TranslatorImpl
 import app.MainApp
 
 fun main(args: Array<String>) {
-    MainApp(DrinkMakerImpl(), PadImpl(), TranslatorImpl()).userInteraction()
+    MainApp(PadImpl(), TranslatorImpl()).userInteraction()
 
 }
