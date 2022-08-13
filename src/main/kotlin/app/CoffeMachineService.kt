@@ -23,10 +23,7 @@ class CoffeMachineService(var drinkMaker: DrinkMaker, var translator:Translator)
     }
 
     private fun sendOrderToDrinkMaker() {
-        drinkMaker.receiveOrder(getFormattedOrder())
+        translator.translate(machineOrder, drinkMaker)
     }
-
-    private fun getFormattedOrder() = translator.translate(machineOrder)
-
 
 }

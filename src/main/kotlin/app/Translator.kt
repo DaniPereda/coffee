@@ -1,7 +1,8 @@
 package app
 
 import domain.MachineOrder
+import app.DrinkMaker
 
 interface Translator {
-    fun translate(machineOrder: MachineOrder):String
+    fun translate(machineOrder: MachineOrder, drinkMaker:DrinkMaker)
 }

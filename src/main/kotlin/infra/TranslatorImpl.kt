@@ -1,20 +1,23 @@
 package infra
 
 import app.Translator
+import app.DrinkMaker
 import domain.ERROR_CODES
 import domain.MachineOrder
 
 class TranslatorImpl(): Translator {
     var machineOrder = MachineOrder()
-    override fun translate(myMachineOrder: MachineOrder):String {
+    override fun translate(myMachineOrder: MachineOrder, drinkMaker: DrinkMaker) {
         machineOrder = myMachineOrder
+        var returnedMesage:String
         if(hasNoErrors())
         {
-            return okMessageGeneration()
+            returnedMesage = okMessageGeneration()
         }
         else {
-            return errorMsgGeneration()
+            returnedMesage = errorMsgGeneration()
         }
+        drinkMaker.receiveOrder(returnedMesage)
 
     }
 

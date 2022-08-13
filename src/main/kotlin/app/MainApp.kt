@@ -7,10 +7,7 @@ class MainApp(drinkMaker: DrinkMaker, private val pad: Pad, translator:Translato
 
         coffeeMachineService.manageButton(pad.increaseSugar())
         coffeeMachineService.manageButton(pad.decreaseSugar())
-        coffeeMachineService.manageButton(pad.increaseSugar())
-        coffeeMachineService.manageButton(pad.tea())
-
-
+        coffeeMachineService.manageButton(pad.coffee())
         coffeeMachineService.manageButton(pad.ready())
     }
 
